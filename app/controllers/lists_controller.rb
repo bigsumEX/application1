@@ -14,6 +14,9 @@ class ListsController < ApplicationController
   end
   
   def index
+    #一覧画面用のアクション
+    @lists = List.all
+    #テーブルに保存されたデータを全取得する。
   end
 
   def show
