@@ -5,12 +5,12 @@ class ListsController < ApplicationController
   end
   
   def create
-    #1,2 :フォームに書かれたデータを受け取り新規登録するためのインスタンス
-    list = List.new(list_params)
-    #3 :データをデータベースに格納するためのsaveメソッド実行
-    list.save
-    #4 :トップ画面へリダイレクト
-    redirect_to list_path(list.id)
+    @list = List.new(list_params)
+    if @list.save
+      redirect_to list_path(@list.id)
+    else
+      render :new
+    end
   end
   
   def index
@@ -38,6 +38,7 @@ class ListsController < ApplicationController
     list.destroy
     redirect_to '/lists'
   end
+  
   
   private
   #ストロングパラメータ
